@@ -1,0 +1,251 @@
+========Test Questions ================
+SQL Questoins:
+1. Difference between nested & corelated query?
+2. Display emp details whose manager is not king?
+3. Display employees who belongs to LOS ANGELS city?
+4. Display employees who belongs to SALES department name?
+5. What is views? How to create views? Example?
+6. Find out how many employees are in the RESEARCH department?
+7. Write a query to find the non-duplicate records?
+8. What are the difference between DISTINCT & ORDER BY with example?
+9. Display the deptname, location for the employees who are recruited in the month of DEC using subquery?
+
+10. Among managers who is getting max salary?
+
+11. What is the output of the below query? Explain?
+select sal from emp order by sal desc where rownum = 1;
+
+12. Difference between GROUP BY & HAVING clause with examples?
+
+13. What is the output? explain?
+select deptno, ename from emp
+UNION ALL
+select dname, deptno from dept
+UNION ALL
+select sal, job from emp;
+
+14. Find first max salary without using aggregate functions and corelated query?
+
+15. Write a query to rename the table column?
+
+
+
+
+===============================================================================
+
+Java & Selenium Questions:
+1. Difference between findElement() & findElements()? 
+findElement method is used to access a single web element on a page. 
+findElements method returns the list of all matching elements. The findElement method throws a NoSuchElementException 
+exception when the element is not available on the page.Whereas, the findElements method returns  an empty list when the element
+is not available or doesn’t exist on the page. It doesn’t throw NoSuchElementException.
+==========================================================================================================================================================
+2. Automate below test case:
+  (a) open browser & navigate to google.co.in
+  (b) type "Sg Testing Institute" in the search field
+  (c) click on Search button
+  (d) Validate search is found for Sg Testing Institute
+  (e) Open SG tesitng website from the search result & read URL & Header from it
+  (f) close the browser
+ ==================================================================================================
+  package org.openqa.selenium;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.util.concurrent.TimeUnit;
+
+
+
+
+public class Assign {
+
+	public static void main(String[] args) throws InterruptedException {
+
+		System.out.println("s") ;
+		
+		System.setProperty("webdriver.chrome.driver", "C:\\Drivers\\Poorni\\WEBDRIVERS\\chromedriver_win32\\chromedriver.exe");
+		
+		WebDriver driver=new ChromeDriver();
+		
+		
+       
+         driver.get("http://www.google.com");
+         WebElement element = driver.findElement(By.name("q"));
+         element.sendKeys("Sg Testing Institute"); 
+         
+
+         driver.manage().window().maximize();
+         
+         Thread.sleep(9000);
+         WebDriverWait w = new WebDriverWait(driver, 5);
+         w.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul")));
+         element.submit();
+        WebElement isthere=driver.findElement(By.xpath("//*[@id=\"rso\"]/div[1]/div[1]/div/div/div[1]/a/div/cite"));
+        if(isthere.isDisplayed())
+        {
+        	System.out.println("sg testing insitute is displayed");
+        }
+        else
+        {
+        	System.out.println("sg testing insitute not displayed");
+        	
+        }
+        Thread.sleep(5000);
+        Actions act1 =  new Actions(driver);
+		act1.moveToElement(driver.findElement(By.xpath("//*[@id=\'tsf\']/div[1]/div[1]/div[2]/button/div/span/svg"))).click().perform();
+        //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+       //driver.findElement(By.xpath("//h3[contains(text(),'SG Software Testing Institute | Software Testing |')]")).click();
+      
+        
+         //driver.close();
+        
+         }
+}
+
+ ===================================================================================================================================================
+3. Automate below test case:
+  (a) Open browser & navigate to amazon.in website
+  (b) Type "shoes for kids" in search field & click on search button
+  (c) It will show how many items were found for your seach in the right top corner of the page
+  (d) Read that text and print it
+  ===================================================================================
+  package org.openqa.selenium;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Amazon {
+	
+	
+	public static void main(String[] args) {
+		ChromeDriver driver = null;
+	
+		try {
+			
+			System.setProperty("webdriver.chrome.driver", "C:\\Drivers\\Poorni\\WEBDRIVERS\\chromedriver_win32\\chromedriver.exe");
+			
+			 driver=new ChromeDriver(); 
+			 driver.navigate().to("https://www.amazon.co.in/");
+			 driver.manage().window().maximize();
+			 driver.findElement(By.id("twotabsearchtextbox")).sendKeys("shoes for kids");
+			 driver.findElement(By.id("nav-search-submit-button")).click();
+			 System.out.println(driver.findElement(By.tagName("h1")).getText());
+			 driver.close();
+			
+			driver.manage().window().maximize();
+		}catch(Exception e)
+		{
+			System.out.println(e);
+		}
+		finally {
+			driver = null;
+			
+		}
+		
+	}
+
+}
+============================================================================================================================================
+  
+4. Automate below test case:
+  (a) Open browser and navigate to naukri.com
+  (b) It will automatically opens 3 child windows. Validate 3 child windows are opened or not?
+  (c) Switch to one by one child windows, read title & URL and close them
+  (d) finally switch back to parent windows
+  (e) Close the browser
+
+5. WAP to add the numbers present in the given string?
+Ex: String str = "hi 111 good 777 5morning7 1sg1test109";
+Output => 111 + 777 + 5 + 7 + 1 + 1 + 109 
+=========================================================================================
+package org.openqa.selenium;
+
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Splitadd {
+
+	public static void main(String[] args) {
+		Pattern p = Pattern.compile("[a-z]+|\\d+");
+		Matcher m = p.matcher("hi 111 good 777 5morning7 1sg1test109");
+		ArrayList<String> allMatches = new ArrayList<>();
+		while (m.find()) {
+		    allMatches.add(m.group());
+		    
+		}
+		
+		int total =0;
+		
+		for (String string : allMatches) {
+			
+			try
+			{
+			      total = Integer.parseInt(string)+ total;
+			} 
+			catch (NumberFormatException e) {
+			      //Will Throw exception!
+			      //do something! anything to handle the exception.
+			}
+		}
+		
+	System.out.println("total: "+total);
+	
+	System.out.println("total: "+allMatches);
+			
+		}  
+		
+	
+	}
+		
+===============================================================================================================================
+6. WAP to read the text from the notepad & write it to Excel file.
+
+7. Automate below test case.
+  (a) Open browser & navigate to the "SampleWebPage.html" sample page
+  (b) click First link, close the child window
+  (c) click second link, close the child window
+  (d) click third link & come back to main page.
+  (e) click fourth link & come back to main page
+  (f) close the browser
+========================================================================================================================================  
+8. Automate below test case:
+  (a) Open browser & navigate to "http://sgtestinginstitute.com/"
+  (b) Click on the menu & read the corresponding URL
+  (c) close the browse
+  package org.openqa.selenium;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+
+
+public class Assign {
+
+	public static void main(String[] args) throws InterruptedException {
+
+		
+		
+		System.setProperty("webdriver.chrome.driver", "C:\\Drivers\\Poorni\\WEBDRIVERS\\chromedriver_win32\\chromedriver.exe");
+		
+		WebDriver driver=new ChromeDriver(); 
+		driver.manage().window().maximize();
+         
+        driver.navigate().to("http://sgtestinginstitute.com/"); 
+        System.out.println(driver.getTitle()) ;
+        
+        driver.findElement(By.linkText("Courses")).click();
+        System.out.println(driver.getTitle()) ;
+        
+        driver.quit();
+	}
+}
+  
+==============================================================================================================================================================  
+9. WAP to read the XML file using SAX parser?
+==========================================================================================================================================
+10. Difference between XML & HTML?
+XML mainly focuses on transfer of data while HTML is focused on presentation of the data.
+XML is Case sensitive while HTML is Case insensitive.
+XML tags are extensible whereas HTML has limited tags.
+XML tags are not predefined whereas HTML has predefined tags.
+===================================================================================================================================

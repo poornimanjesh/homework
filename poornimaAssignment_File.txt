@@ -1,0 +1,140 @@
+package file_read_write;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Properties;
+
+public class PropFileOperations {
+	public static void main(String[] args) { 
+		writeToPropFile();
+		
+		try {
+			readPropFile();
+		}catch(Exception e)
+		{
+			System.out.println(e);
+		}
+	}
+
+	
+	//Create and write to the prop file
+	static void writeToPropFile()
+	{
+		FileOutputStream fout = null;
+		Properties prop = null;
+		try {
+			fout = new FileOutputStream("C:\\Test\\sample.properties");
+			prop = new Properties();
+			
+			prop.setProperty("UN", "admin");
+			prop.setProperty("PWD", "Manager");
+			prop.setProperty("URL", "https://www.gmail.com");
+			prop.setProperty("IP", "16.154.111.12");
+			prop.setProperty("Environment", "QA");
+			prop.setProperty("Task", "Automation");
+			prop.setProperty("HeadCount", "5");
+			
+			
+			prop.store(fout, null);
+		}catch(Exception e)
+		{
+			System.out.println(e);
+		}
+		finally
+		{
+			try {
+				fout.flush();
+				fout.close();
+				fout = null;
+			}catch(Exception e)
+			{
+				System.out.println(e);
+			}
+		}
+	}
+	
+	
+	//Read from the prop file
+	static void readPropFile() throws IOException
+	{
+		FileInputStream fin = null;
+		Properties prop = null;
+		
+		fin = new FileInputStream("C:\\Test\\sample.properties");
+		prop = new Properties();
+		
+		prop.load(fin);
+		
+		
+		
+		
+		//Read only Keys
+		//KeySet()
+        HashMap<String, String> hash_map = new HashMap<String, String>(); 
+        
+        System.out.println(prop.keySet());
+        
+        // hash_map.put(null, null)
+		
+		
+		Iterator<Object> it1 = prop.keys().asIterator();
+	
+		while(it1.hasNext())
+		{
+			System.out.println(it1.next());
+		}
+		
+		Iterator<Object> vals = prop.values().iterator();
+		
+		while(vals.hasNext())
+		{
+			System.out.println(vals.next());
+		}
+		
+		//Read only Values
+		//values()
+		System.out.println(prop.values());
+        
+		//Read both key and values
+		
+
+		//entrySet()
+		System.out.println(prop.entrySet());
+		//forEach()
+		prop.forEach((k, v)->System.out.println(k+" = "+v));
+
+		
+		
+		//Verify the given key exist
+		if(prop.containsKey("IP")) System.out.println("The key IP is present");
+		else System.out.println("The key IP is not present");
+		
+		
+		//Verify the given value exist
+		if(prop.containsValue("Manager"))System.out.println("the value manager is exist");
+		else System.out.println("the value manager is not exist");
+		
+		
+		//read the value by using the key
+		try {
+		
+		
+		System.out.println(prop.get("IP"));
+	}catch(Exception e)
+	{
+		System.out.println(e);
+	}
+	finally
+	{
+		prop = null;
+	}
+
+
+	}
+}
+		
+	

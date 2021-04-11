@@ -1,0 +1,54 @@
+public static void main(String[] args) {
+		ChromeDriver driver = null;
+		//FirefoxDriver driver = null;
+
+		try {
+			//System.setProperty("webdriver.gecko.driver", "C:\\Drivers\\Poorni\\WEBDRIVERS\\firefox\\geckodriver.exe");
+			System.setProperty("webdriver.chrome.driver", "C:\\Drivers\\Poorni\\WEBDRIVERS\\chromedriver_win32\\chromedriver.exe");
+			//driver = new FirefoxDriver();
+			 driver=new ChromeDriver(); 
+			
+		    driver.manage().window().maximize();
+	        driver.navigate().to("https://www.selenium.dev/selenium/docs/api/java/index.html?overview-summary.html");
+	        System.out.println( driver.getTitle());
+	        Thread.sleep(2000);
+	        driver.findElement(By.name("packageFrame")).click();
+	       
+			Thread.sleep(2000); 
+			
+			String sParent = driver.getWindowHandle();
+			System.out.println(sParent);
+
+			Set<String> oChild = driver.getWindowHandles();
+			System.out.println("No. of Child windows: " + oChild.size());
+			
+			for(String child: oChild)
+			{
+				if(!child.equals(sParent)) {
+					System.out.println("Chld w2indow ID: " + child);
+					
+					driver.switchTo().window(child);
+					
+					System.out.println(driver.getCurrentUrl());
+					
+					System.out.println(driver.getTitle());
+					
+					driver.close();
+				}
+			}
+			
+			driver.switchTo().window(sParent);
+			Thread.sleep(5000);
+			driver.close();
+	   	
+		}catch(Exception e)
+		{
+			System.out.println(e);
+		}
+		finally {
+			driver = null;
+
+	}
+
+	    } 
+	  }

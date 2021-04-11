@@ -1,0 +1,21 @@
+package javaclass1;
+//1. WAP to display the given string "welcome to SG Testing Institute" as "SG TESITNG INSTITUTE" ?
+
+public class Assginmentjava {
+	
+public static void main(String[] args) {
+	
+	StringBuilder str = new StringBuilder();
+	
+	str.append("welcome to SG Testing Institute");
+	
+	str.delete(0, 11);
+	
+	String s = str.toString();
+	
+	
+	System.out.println(s.toUpperCase());
+		
+	}
+
+}

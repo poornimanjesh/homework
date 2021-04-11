@@ -1,0 +1,42 @@
+package singleton;
+
+class singletonnum{
+
+private static singletonnum single_in=null;
+public Integer i;
+
+private singletonnum() {
+	i=45;
+}
+public static singletonnum getInstance() {
+	
+if (single_in==null) {
+	single_in=new singletonnum();
+}
+	return single_in;
+}
+}
+   public class Singletonpractice2 {
+
+	public static void main(String[] args) {
+		
+	   singletonnum k=singletonnum.getInstance();
+	   singletonnum g=singletonnum.getInstance();
+	   singletonnum h=singletonnum.getInstance();
+	   
+	  k.i=(k.i)- 7;
+	  System.out.println(k.i);
+	  System.out.println(g.i);
+	  System.out.println(h.i);
+	  
+	  k.i=(g.i)- 7;
+	  System.out.println(k.i);
+	  System.out.println(g.i);
+	  System.out.println(h.i);
+	  
+	  
+
+	}
+
+   }
+

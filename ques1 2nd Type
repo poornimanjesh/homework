@@ -1,0 +1,38 @@
+package javaclass1;
+
+public class Ques1 {
+	
+	
+	 public static void main(String[] args) {
+	 del("Welcome to SG Testing Institute");
+	 
+	 } 
+
+	static void del(String del)
+	{
+	 StringBuffer sbBuffer=null;
+	 
+	 try {
+		 
+		 sbBuffer = new StringBuffer(del);
+		 System.out.println(sbBuffer);
+		 sbBuffer.delete(0, 8);       //deleting 0 to 8 chr
+		 System.out.println(sbBuffer.delete(0, 8));
+		 String sl = sbBuffer.toString();     //converting stringBuffer into string because, we don't have (toUpperCase) option in strinBuffer 
+		 System.out.println(sl.toUpperCase());
+	 }
+	 catch(Exception e)
+	 {
+		 System.out.println(e);
+	        }
+	 finally {
+		 sbBuffer =null;
+		
+		 
+	}
+	
+	
+	}
+
+}
+

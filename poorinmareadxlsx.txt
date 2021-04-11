@@ -1,0 +1,47 @@
+package singleton;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+
+  public class APIDataReadig {
+
+	
+
+	public static void main(String[] args) throws   IOException {
+	String excelsheet=("C:\\Test\\Data.xlsx");
+	FileInputStream file=new FileInputStream(excelsheet);
+	XSSFWorkbook wb=new XSSFWorkbook(file);
+	//XSSFSheet sh=wb.getSheet("sheet1");
+	XSSFSheet sh=wb.getSheetAt(0);
+	
+	int rows=sh.getLastRowNum();
+	int col=sh.getRow(1).getLastCellNum();
+	for(int r=0;r<=rows;r++) {
+		
+		XSSFRow row=sh.getRow(r);
+		for(int c=0;c<=col;c++) 
+		{
+			XSSFCell cell=row.getCell(c);
+			switch(cell.getCellType()) 
+			{
+			case STRING: System.out.print(cell.getStringCellValue());break;
+			case NUMERIC: System.out.print(cell.getNumericCellValue());break;
+			case BOOLEAN: System.out.print(cell.getBooleanCellValue());break;
+			default:
+				break;
+			
+			}
+			System.out.print("| ");
+		}
+			System.out.println();
+		}
+	}
+	
+
+}

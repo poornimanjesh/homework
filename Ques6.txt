@@ -1,0 +1,31 @@
+//Replace the 2nd & subsiquent occurrance of the character with under score (_)
+//Ex: india is great
+//ind_a _s gre_t
+public class Replace {
+
+	public static void main(String[] args) {
+		//System.out.println(s.replace('o', 'i'));
+		replacedemo();
+	}
+	
+	static void replacedemo()
+	{
+		String str=null;
+		String res=null;
+		try {
+			    str="india is great";
+			    res="ind_a _s gre_t";
+			    System.out.println(str.replaceAll(str,res));
+			
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+		finally{
+			str=null;
+			 res=null;
+		}
+	}
+
+	}
+

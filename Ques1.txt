@@ -1,0 +1,47 @@
+package javaclass1;
+// find out the number of occurrance of the given string"hello india good morning india"
+
+import java.util.Arrays;
+
+public class Occurranc {
+	
+
+	public static void main(String[] args) {
+	
+      OccuranceDemo();
+
+	}
+	static void  OccuranceDemo() {
+		String given =null;
+		String found=null;
+		String strArr[];
+		try{ 
+			given="My contry is India India is great  ";
+			found="India";
+			strArr = given.split(" ");
+			//System.out.println(Arrays.toString(strArr));
+			int count=0;
+
+			for (int i = 0; i < strArr.length; i++) {
+				if(found.contains(strArr[i]))
+				{
+					
+					System.out.println(found);
+				    count++;
+				  }
+				}
+					
+			
+		}
+		catch(Exception e) {
+          System.out.println(e);
+		}
+		
+		finally {
+		given =null;
+		found=null;
+		}
+
+	}
+	
+}

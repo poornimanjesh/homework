@@ -1,0 +1,150 @@
+package collectionpractice;
+
+
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.Spliterator;
+import java.util.TreeSet;
+
+
+
+public class Treeset {
+public static void main(String[] args) {
+	//treeset();
+	compare();
+	rawapproch();
+							}
+
+static void treeset()
+			{
+	Set<String> obj = new TreeSet<String>();  //adding the value and read the values
+	try {
+					obj = new TreeSet<>();
+					obj.add("importent");
+					obj.add("zeebra");
+					obj.add("Mango");
+					obj.add("Titanic");
+					obj.add("school");
+					obj.add("cinema");
+					obj.add("macbook");
+					System.out.println(obj);
+					System.out.println("No. of elements: " + obj.size());
+					
+					System.out.println("################# Iterator ### hasNext() next()");
+					
+					Iterator<String> it = obj.iterator(); 
+					while(it.hasNext())
+					{
+						System.out.println(it.next());
+					}
+					
+					System.out.println("############# FOR EACH ##############");
+					for(String chr : obj)
+					{
+						System.out.println(obj);
+					} 
+					
+					
+					System.out.println("##### Spliterator #######Spliterator<String> sp = obj.spliterator();  forEach remaining");
+					
+					Spliterator<String> sp = obj.spliterator();
+					sp.forEachRemaining(System.out::println);
+					System.out.println("*************** forEach() *******************");
+					obj.forEach((val)->System.out.println(val));
+					
+					}
+	catch(Exception e) {
+					System.out.println(e);
+				   }
+				finally{
+					obj = null;
+				}
+			}
+Treeset tr=null;
+//isEmpty()  //containsAll  //equals()
+static void compare() { 
+	
+
+	TreeSet<String> tr = new TreeSet<String>();
+	tr.add("num");
+	tr.add("mum");
+	tr.add("lum");
+	tr.add("sum");
+	TreeSet<String> tl = new TreeSet<String>();
+
+	tl.add("1");
+	tl.add("mum");
+	tl.add("lum");
+	tl.add("tum");
+	
+	if(tr.equals(tl))System.out.println("both are same :+equals()");
+	else 
+	System.out.println("both are not same: +equals()");
+	
+	if(tr.containsAll(tl))System.out.println("both are same :+containsAll()");
+	else 
+	System.out.println("both are not : +containsAll()");
+	
+	if(tr.isEmpty())System.out.println("both are  :+isEmpty()()");
+	else 
+	System.out.println("both are not : +isEmpty()()");
+	
+	//sbstration 
+	
+	System.out.println(tl.retainAll(tr));
+	System.out.println(tl);
+	
+	//addALL 
+	System.out.println(tl.addAll(tr));
+	if(tr.addAll(tl)) System.out.println("Both the collections merged successful");
+	else System.out.println("Failed to merge both List & Set collection");
+	System.out.println(tr);
+	System.out.println(tl);
+	
+	
+	
+	
+	
+	try {
+	}
+	catch(Exception e) {
+		System.out.println(e);
+	   }
+	finally{
+		tr = null;
+	}
+}
+
+
+static void rawapproch()
+
+{ 
+	TreeSet ma=null;
+	try {  
+		
+
+	ma = new TreeSet();
+	ma.add('P');
+	ma.add(new String("goog morning all"));
+	ma.add(new StringBuilder("Today is monday"));
+	System.out.println(ma);
+	ma.add(true);
+	ma.add(true);
+		
+	}
+	catch(Exception e) {
+		System.out.println(e);
+	}
+	finally {
+		ma=null;
+	}
+	
+	
+	
+	
+}
+
+
+}
+

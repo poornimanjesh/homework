@@ -1,0 +1,75 @@
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.Map.Entry;
+
+public class Hashmap {
+
+	private static HashMap<String, Integer> phonenumber;
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		hashMapDemo();
+
+	}
+	//Create a HAshMap, add values & display the values
+		static void hashMapDemo()
+		{
+			Map<String, Integer> phonenumer = null;
+			try {
+				phonenumber = new HashMap<String, Integer>();
+				phonenumber.put("yuki", 986546756);
+				phonenumber.put("Aadya", 987645636);
+				phonenumber.put("mike", 345256746);
+				phonenumber.put("Prithvi", 908765667);
+				phonenumber.put("surabhi", 987897654);
+				System.out.println(phonenumber);
+				System.out.println("No. of elements: " + phonenumber.size());
+				
+				//it helps to read the okeys only
+				Set<String> Keys = phonenumber.keySet();
+				Iterator<String> it1 = oKeys.iterator();
+				while(it1.hasNext())
+				{
+					System.out.println("KEYS: " + it1.next());
+				}
+				System.out.println("--------------------------------------------------");
+				
+				
+				//it helps  to read the values only
+				Collection<Integer> oValue = phonenumber.values();
+				Iterator<Integer> it2 = oValue.iterator();
+				while(it2.hasNext())
+				{
+					System.out.println("VALUES: " + it2.next());
+				}
+				System.out.println("--------------------------------------------------");
+				
+				
+				//it helps to Read both key & value 
+				//Case1:
+				phonenumer.forEach((k, v)->System.out.println(k+" = "+v));
+				System.out.println("--------------------------------------------------");
+				
+				//Case2:
+				Set<Entry<String, Integer>> oBoth = phonenumer.entrySet();
+				Iterator<Entry<String, Integer>> it3 = oBoth.iterator();
+				while(it3.hasNext())
+				{
+					System.out.println(it3.next());
+				}
+				
+				System.out.println("--------------------------------------------------");
+				
+			}catch(Exception e)
+			{
+				System.out.println(e);
+			}
+			finally
+			{
+				phonenumber = null;
+			}
+		}
+
+}

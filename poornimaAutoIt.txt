@@ -1,0 +1,24 @@
+package autoit;
+
+public class AutoITtry {
+
+	public static void main(String[] args) {
+		runtry();
+
+	}
+	static void  runtry()
+	{
+		String path=null;
+		try {
+			path="C:\\Drivers\\Autoit\\first.exe"; 
+			Runtime.getRuntime().exec(path);
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+		finally {
+			path=null;
+		}
+	}
+
+}

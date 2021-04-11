@@ -1,0 +1,197 @@
+package mytry;
+
+import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class RegexPractice {
+
+	public static void main(String[] args)  {
+		matchisfound();
+		repeatOccurrece("the bus is running round and round", "round");
+		got();
+		replace();
+		split();
+		withoutsplitmethod();
+		withoutmethod();
+
+	}
+	
+	//Q: the string contains 10 digits account number. Read the account number?
+static void matchisfound()
+{
+	Pattern pat=null;
+     Matcher mat=null;
+     try {
+	
+	 pat=Pattern.compile("[0-9]{10}");  
+	 mat=pat.matcher("9536534223");
+	
+	if(mat.matches())System.out.println("match found");
+	else System.out.println("match not found");
+	}
+     catch(Exception e) {
+    	 System.out.println(e);
+     }
+     finally {
+    	 pat=null;
+    	 mat=null;
+     }
+     
+	
+ 
+
+}
+
+//Q: Find number of occurrence character OR string?
+static void repeatOccurrece(String main,String search)
+{
+	Pattern pa=null;
+	Matcher mt=null;
+	try {
+		pa=Pattern.compile(search);
+		mt=pa.matcher(main);
+		int count=0;
+		while(mt.find()) {
+			System.out.println(mt.group());
+			count++;
+			
+		}
+		System.out.println("we got '"+count+"'times");
+	}catch (Exception e) {
+		System.out.println(e); 
+		}
+		finally {
+			pa=null;
+			mt=null; 
+			}
+		 }
+
+static void got() {
+	Pattern pe=null;
+	Matcher mc=null;
+	try {
+		pe=Pattern.compile("[m|M][h|H]");
+		mc=pe.matcher("MH Manjesh");
+		if (mc.find())System.out.println("I got it");
+		else System.out.println("I didn't get it");
+	}
+	catch(Exception e)
+	{
+		System.out.println(e);
+	}
+	finally {
+		pe = null;
+		mc = null;
+	}
+	
+}
+
+//Q:// "agumbe received 120 mm of rain". Display this as "agumbe received many mm of rain"
+static void replace()
+
+{
+	Pattern pt=null;
+	Matcher ma=null;
+	try {
+		
+		
+		String given = "agumbe received 346 mm of rain";
+		
+		String res = given.replaceAll("[0-9]{3}", "many");
+		
+		
+		System.out.println(res);
+		
+		
+		
+		
+	}
+	catch(Exception e) {
+		System.out.println(e);
+	}
+	finally {
+		pt=null;
+		ma=null;
+	}
+} 
+//Q: without using split separate each words from the string?
+
+static void split() {
+	Pattern pt=null;
+	
+	
+	try {
+		pt=Pattern.compile("%");
+		String arr[]=pt.split("M%A%N%J%E%S%");
+		for(String s:arr) {
+			System.out.println(s);
+		}
+	}
+		
+	
+	catch(Exception e) {
+		System.out.println(e);}
+		finally {
+			pt=null;
+			
+		}
+	
+}
+//Q: "sundaymondaytuesdaywednesdaythursady", Display this as "sunday, monday, tuesday, wednesday, thursady"
+static void withoutsplitmethod()
+{
+	   Pattern pm=null;
+	    Matcher mn=null;
+	try {
+		pm=Pattern.compile("[a-z]+|[A-Z]");
+		mn=pm.matcher("the man power is very importent for growth");
+		while(mn.find()) {
+		System.out.println(mn.group());
+		
+		}
+		
+		
+	}
+	catch(Exception e) {
+	System.out.println(e);
+	}
+	finally {
+		pm=null;
+		mn=null;
+	}
+}
+
+static void withoutmethod()
+{
+	   Pattern pm=null;
+	    Matcher mn=null;
+	try {
+		pm=Pattern.compile("[a-z]");
+		mn=pm.matcher("sundaymondaytuesdaywednesdaythursday");
+		
+		
+		String given = "sundaymondaytuesdaywednesdaythursday";
+	
+	
+		String res = given.replaceAll("(y)", "y, ");
+		
+		
+		System.out.println("weekdays: "+res); 
+		
+		
+		
+	}
+	catch(Exception e) {
+	System.out.println(e);
+	}
+	finally {
+		pm=null;
+		mn=null;
+	}
+}
+
+
+}
+
+ 

@@ -1,0 +1,48 @@
+
+package singleton;
+
+
+class singleton1{
+
+private static singleton1 single_inst=null; 
+public String str;
+
+private singleton1() { 
+	str="today I'm learning singleton";
+}  
+public static singleton1 getInstance() {
+	if(single_inst==null) {
+	single_inst=new singleton1();
+	
+	}
+	return single_inst;
+}
+
+
+}
+
+public class Singletonpractice1 {
+
+	public static void main(String[] args) {
+		singleton1 x=singleton1.getInstance();
+		singleton1 y=singleton1.getInstance();
+		singleton1 z=singleton1.getInstance();
+		
+		x.str=(x.str).toUpperCase();
+		System.out.println(x.str);
+		System.out.println(y.str);
+		System.out.println(z.str);
+		
+		
+		z.str=(z.str).toLowerCase();
+		System.out.println(x.str);
+		System.out.println(y.str);
+		System.out.println(z.str);
+
+
+
+
+
+	}
+
+}
