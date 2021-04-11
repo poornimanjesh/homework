@@ -1,0 +1,160 @@
+Q: Enter First password using Absolute xpath?
+Ans:
+/html/body/form/input[2]
+
+Q: Enter second username using Absolute xpath?
+Ans:
+/html/body/form[2]/input
+
+
+
+Q: Enter second password using Absolute xpath?
+Ans:
+/html/body/form[2]/input[2]
+
+
+
+
+Gopalkrishna, 01:49
+Q: Do we prefer Absolute xpath?
+Ans: No. Bcoz it is too lengthy & you must know good knowledge in HTML.
+
+
+Q: Write absolute xpath for actiTime User Name element?
+Ans:
+/html/body/table/tbody/tr/td/table/tbody/tr/td/div/table/tbody/tr/td[2]/div/table/tbody/tr[5]/td/table/tbody/tr/td/table/tbody/tr/td/input
+
+====RELATIVE XPATH==
+I. Direclty using tags?
+Q: Enter forst user name?
+Ans: //input
+
+Q: Enter first password?
+Ans: //input[2]
+
+II. Using attribute name and value:
+
+Q: Enter first user name?
+//<tagName>[@<attrName>=<attrValue>]
+
+//input[@id='frm1_UN_id1']
+
+Q: Enter first password?
+//<tagName>[@<attrName>=<attrValue>]
+
+//input[@name='frm1_PWD_name1']
+
+III. Using more than one attribute name and value:
+
+Q: Identify the first User NAme?
+//<tagName>[@<attrName1>=<attrVal1>][@<attrName2>=<attrVal2>]
+
+//input[@type='text'][@id='frm1_UN_id1']
+
+Q: Identify the first Password?
+
+//input[@type='PASSWORD'][@class='frm1_PWD_class1']
+
+IV. xpath using and logical operator
+Q: Identify the first user name?
+//<tagName>[@<attrName1>=<attrValue1> and @<attrName2>=<attrVal2>]
+
+//input[@type='text' and @id='frm1_UN_id1']
+
+Q: Identify the first password?
+//input[@type='PASSWORD' and @id='frm1_PWD_id1']
+
+V. xpath using or logical operator
+Q: Identify the first User name?
+//<tagName>[@<attName1>=<attrVal1> OR @<attrName2>=<attrVal2>]
+
+//input[@type='xxxxxxxx' or @id='frm1_UN_id1']
+
+
+Q: Identify the first password?
+//input[@type='PASSWORD' or @id='frdddddddd1']
+
+VI. xpath using text() method
+=> When the element has to be identified by its text
+
+Q: Read the header1?
+Ans:
+//<tagName>[text()=<value>]
+//h1[text()='Header One']
+
+System.out.println(ch.findElement(By.xpath("//h1[text()='Header One']")).getText());
+
+<h1 align="center">Header One</h1>
+align="center" => Attribute
+Header One => text
+
+Q: Identify the first link using its text?
+Ans:
+//a[text()='SG Testing']
+
+Q: What is the challenge you faced in selenium?
+Ans: Identifying the elements which are dynamic in nature.
+
+Q: What is the approach to identify the dynamic elements?
+Ans: Xpath OR cssSelector with partial match
+
+
+Gopalkrishna, 02:28
+VII. xpath using partial match
+
+This is used to identify the dynamic elements (Means the elements attrubutes keep changes during runtime) in the DOM structure.
+
+We have 3 methods to perform partial match
+(a) starts-with(@<attrName>, <attrValue>)
+(b) ends-with(@<attrName>, <attrValue>)
+(c) contains(@<attrName>, <attrValue>)
+
+
+id="frm1_UN_id123456"
+id="frm1_UN_id324567"
+
+
+Q: Identify the user name where the id attrubites last values are changing?
+Ans:
+//<tagName>[starts-with(@<attrName>, <the constant value from the begining>)]
+//input[starts-with(@id, 'frm1_UN_id')]
+
+
+Gopalkrishna, 02:36
+Q: Identify the user name where the id attrubites first values are changing?
+Ans:
+//<tagName>[ends-with(@<attrName>, <the constant value from the end>)]
+//input[ends-with(@id, '_UN_id1')]
+
+ends-with(): will not work bcoz there is a bug in the html
+
+
+Q: First user name?
+//input[contains(@id, '_UN_id1')]
+
+Q: Read the header?
+//h1[contains(text(), 'One')]
+
+Q: Read the paragrapgh?
+//p/b[contains(text(), 'Two')]
+
+
+Gopalkrishna, 02:54
+VIII. xpath axis
+(A): following-sibling
+
+Q: Read the designation for Kalam?
+ans:
+//table[@id='table2']/tbody/tr/td[text()='Kalam']/following-sibling::td[1]
+
+
+Q: Enter salary for Narendra Modi?
+Ans:
+//table[@id='table2']/tbody/tr/td[text()='Narendra Modi']/following-sibling::td[5]/input
+
+
+//table[@id='table2']/tbody/tr/td[text()='Narendra Modi']/following-sibling::td/input[@type='text']
+
+(a) Identify the password by using user name xpath?
+Ans:
+//input[@id='frm1_UN_id1']/following-sibling::input

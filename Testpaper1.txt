@@ -1,0 +1,106 @@
+Core Java Questions:
+
+1. What is encapsulation? WAP to access the private members of the class?
+
+2. What is abstraction? WAP for the abstraction?
+
+3. What are the difference between abstract class and interface?
+
+4. WAP to check that the given number is prime or not?
+
+5. WAP to read the .txt file using FileInputStream class. Make sure it only displays vowels (a, e, i, o, u) from the file if exists?
+
+6. WAP to add only the even numbers from the both arrays?
+
+7. Explain the responsibility of the child class in the inheritance at abstract class & interface level?
+
+8. The folder contains different files like .txt, .xlsx, .zip etc. WAP to findout how many .txt files are present?
+
+9. The folder contains 10 files and folders. Read the names of files and folders & display them in the sorted order?
+
+10. WAP to create the nested directories without using the .mkDirs() method?
+
+11. What is the outout of the below code? Explain with reasons. Fix the code and execute all the methods available in all the classes using single object?
+
+abstarct class Parent{
+   abstract void method1();
+   abstract void method2();
+   public void a() {System.out.println("Parent: method a()");}
+}
+
+class Child extends Parent{
+   abstract void method3();
+   public void b() {System.out.println("Child: method b()");}
+}
+
+class GrandChild extends Child{
+    void method3() {System.out.println("GrandChild implemented method3() abstract method")}
+}
+
+public class InheritanceDemo{
+   public static void main(String[] args)
+   {
+       //Here using one object you should run all the methods
+   }
+}
+
+12. WAP to demonstrate the compile time polymorphism in java?
+
+13. There is a folder whicj contains 7 folders. WAP to Rename them to weekday name?
+
+14. What is the difference between throw and throws with example code?
+
+15. Explain the finally block?
+
+16. What is the output of the below code?
+public static void main(String[] args)
+{
+	String str = null;
+    try{
+	   str = "Good morning";
+	   System.out.print(str);
+	   System.out.print();
+	   System.out.print("**********");
+	   str = "Good Day";
+	   System.out.print(str);
+	   throw IllegalArgumentException("Custom exception message");
+	}catch(Exception e)
+	{
+	   System.out.println("Encoutered exception");
+	}
+	finally{
+	   System.out.println("Executing finally block");
+	   str = null;
+	}
+}
+
+
+17. WAP for the below explained logic to find the one missing number from the sorted array?
+int arr[] = {1, 2, 3, 5, 6, 7, 8};
+ (a) Read the max value from the array & add all the values in that range (means 1 to max number)
+ (b) Add all the numbers available in the array
+ (c) substract the output of step (a) with step (b) the nyou will get the one missign number
+ 
+ 
+18. WAP to replace all the odd values of the array 1 with even values of the array 2?
+ex: int a[] = {1, 2, 3 ,4 ,5 ,6 ,7 ,8 ,9, 10};
+int b[] = {12, 14, 16, 18, 20};
+The resultant array should be as follows:
+int a[] = {12, 2, 14 ,4 ,16 ,6 ,18 ,8 ,20, 10};
+
+
+19. WAP to replace the 2nd & subsiquent occurrance of the character with under score (_)
+   Ex: india is great
+       ind_a _s gre_t 
+
+20. find out AMAZON is present in the given string "MAZOAN"?
+ 
+
+1. copy the questions (with out delete/modify) into notepad
+2. Save the notepad with <your name>.txt
+3. If you have not attended SQL/Java then please mention that 'Not Attended'
+4. If need help in understanding the question then please let me know
+5. The test must be completed by 04:00 PM. Any answers after 04:00 PM will be treated as absent
+
+
+

@@ -1,0 +1,169 @@
+Q: Find the person name who is before Narendra Modi?
+Ans:
+//table[@id='table2']/tbody/tr/td[contains(text(), 'Narendra Modi')]/preceding::tr/td
+
+
+xpath = "//table[@id='table2']/tbody/tr/td[contains(text(), 'Narendra Modi')]/preceding::tr[1]/td";
+String s = ch.findElement(By.xpath(xpath)).getText();
+System.out.println(s);
+
+Q: Enter salary to the person who is before Former Cricketer?
+Ans:
+//table[@id='table2']/tbody/tr/td[contains(text(), 'Cricketer')]/preceding::tr[1]/td/input[@type='text']
+
+
+Q: Navigate from OK button to password?
+Ans:
+//input[@id='frm1_OK_id1']/preceding::input[1]
+
+Q: Enter salary to the person who is present in 2nd row?
+Ans:
+
+//tr[3]/descendant::td/input[@type='text']
+//table/descendant::tr[2]/descendant::td/input[@type='text']
+
+Q: Enter the user name which is inside the parent form?
+Ans:
+//form[@id='frm1']/descendant::input[1]
+
+Q: Find the row OR table for the given value?
+//td[text()='Rahul Dravid']/ancestor::tr[1]
+//td[text()='Rahul Dravid']/..
+
+Q: Identify the table id where Modi exists?
+Ans:
+//td[contains(text(), 'Modi')]/ancestor::tr/ancestor::table
+//td[contains(text(), 'Modi')]/ancestor::table
+
+
+Q: Q: Identify the table name where Modi exists?
+//td[contains(text(), 'Modi')]/ancestor::table/preceding::h1[1]
+
+Q: Navigate to the parent element?
+ans:
+xpath = "//input[@id='frm1_UN_id1']/parent::form";
+String s = ch.findElement(By.xpath(xpath)).getAttribute("id");
+System.out.println(s);
+
+Q: Navigate to the child element?
+ans:
+xpath = "//form[@id='frm1']/child::input";
+ch.findElement(By.xpath(xpath)).sendKeys("aaaaaaaaaa");
+
+cssSelector doesnot support the following:
+
+1. /
+2. //
+3. @
+4. index
+5. and 
+6. or
+7. text
+
+==cssSelector====
+
+Q: Enter first UserName values?
+Ans:
+html body form input
+
+cssSel = "html body form input";
+ch.findElement(By.cssSelector(cssSel)).sendKeys("aaaaaaaaaaaaaaaa");
+
+Q: Enter first password values?
+Ans:
+html body form input[id='frm1_PWD_id1']
+
+cssSel = "html body form input[id='frm1_PWD_id1']";
+ch.findElement(By.cssSelector(cssSel)).sendKeys("aaaaaaaaaaaaaaaa");
+
+Q: Enter second password values?
+Ans:
+html body form[id='frm2'] input[id='frm1_PWD_id1']
+
+cssSel = "html body form[id='frm2'] input[id='frm1_PWD_id1']";
+ch.findElement(By.cssSelector(cssSel)).sendKeys("aaaaaaaaaaaaaaaa");
+
+I. direclty using the tagname
+
+Q: Enter the first username?
+input
+
+cssSel = "input";
+ch.findElement(By.cssSelector(cssSel)).sendKeys("aaaaaaaaaaaaaaaa");
+
+II. direclty using the ID and class symbols
+
+Q: Enter the first username?
+input
+
+cssSel = "input#frm1_UN_id1";
+ch.findElement(By.cssSelector(cssSel)).sendKeys("aaaaaaaaaaaaaaaa");
+
+
+cssSel = "input.frm1_UN_class1";
+ch.findElement(By.cssSelector(cssSel)).sendKeys("aaaaaaaaaaaaaaaa");
+
+III. using attribute name and value
+
+Q: Enter the first username?
+<tagName>[<attrName>=<attrVal>]
+
+Ex:
+input[name='frm1_UN_name1']
+
+IV. using more than one attribute name and value
+
+Q: Enter the first username?
+<tagName>[<attrName1>=<attrVal1>][<attrName2>=<attrVal2>]
+
+Ex:
+input[name='frm1_UN_name1'][type='text']
+
+V. partial match for cssSelector
+
+(a) ^ (starts-with):
+Q: Enter first username value?
+Ans:
+<tagName>[<attrName>^=<attrValue>]
+
+input[id^='1_UN_id1']
+
+
+(b) $ (ends-with)
+Q: Enter first username value?
+Ans:
+<tagName>[<attrName>$=<attrValue>]
+
+input[id$='_UN_id1']
+
+
+(c) * (contains)
+Q: Enter first username value?
+Ans:
+<tagName>[<attrName>*=<attrValue>]
+
+input[id*='_UN_id1']
+
+VI. nth child concept in cssSelector
+
+(a) first-child:
+Q: Find the first child element inside the form one?
+Ans:
+form[id='frm1']> :first-child
+
+(b) last-child:
+Q: Find the last child element inside the form one?
+Ans:
+form[id='frm1']> :last-child
+
+(c) nth-child(<index>):
+    It counts all the tags in between.
+
+Q: Find the middle child elements inside the form one?
+Ans:
+form[id='frm1']> :nth-child(5)
+
+ 1h 19m 31s
+
+
+Type a message
