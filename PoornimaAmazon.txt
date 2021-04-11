@@ -1,0 +1,150 @@
+
+2. Automate the following test case:
+   (a) Open browser and navigate to https://www.amazon.in/ URL
+   (b) search for 'Shoes for kids" and click on search button
+   (c) Validate search result page opens.
+   (d) click on the any search item & validate it opens in the new page.
+   (e) Switch to new page & read the product name & price.
+   (f) Select the quantity as 4 & click on "Add to Cart" button
+   (g) Validate that the item is added to the cart and it shows total price. Validate that the total proce is correct.
+   (h) click on cart button and validate product name, price, subtotal and quality with previous data. Both should match
+   (i) delete the item from the cart & validate that it is removed from the cart.
+   (j) close browser
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+package Actitime;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import org.openqa.selenium.support.ui.Select;
+
+public class Amazon {
+
+	public static void main(String[] args) {
+		ChromeDriver driver = null;
+
+		try {
+
+			System.setProperty("webdriver.chrome.driver", "C:\\Drivers\\Poorni\\WEBDRIVERS\\chromedriver_win32\\chromedriver.exe");
+
+			driver=new ChromeDriver(); 
+			driver.navigate().to("https://www.amazon.co.in/");
+			driver.manage().window().maximize();
+			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+			driver.findElement(By.id("twotabsearchtextbox")).sendKeys("shoes for kids");
+			driver.findElement(By.id("nav-search-submit-button")).click();
+			if(driver.findElement(By.xpath("//span[text()='Shoes']")).isDisplayed())
+			{
+				System.out.println("result page opens") ;
+			}
+			else
+			{
+				System.out.println("result page not opens") ; 
+			}
+			String shose_xpath= ("//img[contains(@src,'https://m.media-amazon.com/images/I/714rcwRW7NL._AC_SX200_SY161_QL70_.jpg')]");
+			driver.findElement(By.xpath(shose_xpath)).click();
+			Thread.sleep(2000);
+			if(driver.findElement(By.id("title")).isDisplayed())
+			{
+				System.out.println(" Successfully it opens in the new page") ;
+			}
+			else
+			{
+				System.out.println(" fail to  opens in the new page") ; 
+			}
+			//Switch to new page & read the product name & price. 
+			System.out.println(driver.findElement(By.tagName("h1")).getText());
+			System.out.println(driver.findElement(By.id("priceblock_ourprice")).getText());
+			//Select the quantity as 4 & click on "Add to Cart" button
+			Select drp=new Select(driver.findElement(By.name("dropdown_selected_size_name")));
+			drp.selectByIndex(1);
+			System.out.println("selected the size");
+			Thread.sleep(5000);
+			Select drp1=new Select(driver.findElement(By.name("quantity")));
+			drp1.selectByIndex(1);
+
+			Thread.sleep(5000);
+			driver.findElement(By.xpath("//input[@id='add-to-cart-button']")).click();
+			driver.navigate().back();
+			Select drp2=new Select(driver.findElement(By.name("quantity")));
+			drp2.selectByIndex(1);
+			Thread.sleep(2000);
+			driver.findElement(By.xpath("//input[@id='add-to-cart-button']")).click();
+			//Validate that the item is added to the cart and it shows total price.
+			//Validate that the total proce is correct.
+			Thread.sleep(2000);
+			if(driver.findElement(By.xpath("//h1[contains(.,'Added to Cart')]")).isDisplayed())
+			{
+
+				System.out.println("Successfully added");
+			}
+			Thread.sleep(5000);
+			String Price=driver.findElement(By.xpath("//span[contains(text(),'₹ 7,596.00')]")).getText();
+			System.out.println(Price);
+			if(Price.equals("₹ 7,596.00"))
+			{
+				System.out.println("total price is correct");
+			}
+			else
+			{
+				System.out.println("total price is not correct");	
+			}
+			driver.findElement(By.xpath("//div[@id='nav-cart-count-container']")).click();
+			//click on cart button and validate product name, price, subtotal and quality with previous data. Both should match
+			Thread.sleep(5000);
+			if(driver.findElement(By.xpath("//span[@class='a-truncate-cut']")).equals("skoodo Unisex-Child Neptune Blue & Grey Sports Shoes -1.5 UK (XX-Wide)"))
+			{
+				System.out.println(" product name is correct");
+			}
+			else {
+				System.out.println(" product name is not correct");
+			}
+			if(driver.findElement(By.xpath("//span[@id='sc-subtotal-label-activecart']")).equals("Subtotal (4 items):"))
+			{
+				System.out.println(" subtotal is correct");
+			}
+			else {
+				System.out.println(" subtotal is correct");
+			}
+			Thread.sleep(5000);
+
+
+			if(driver.findElement(By.xpath("//span[@id='sc-subtotal-amount-activecart']")).isDisplayed())
+			{
+				System.out.println("price is macthing");
+			}
+			else
+			{
+				System.out.println("price is not macthing");
+			}
+
+			//driver.quit();
+
+//			driver.close();
+
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+		finally {
+			driver.close();
+
+			driver = null;
+
+		}
+
+	}
+
+
+}
+
+
+
+
+

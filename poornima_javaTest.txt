@@ -1,0 +1,277 @@
+. Automate the following test case:
+  (a) Open browser and navigate to actiTime URL
+  (b) Login with valid credentials & handle the shortcur If exists
+  (c) Create New user & validate user created successful.
+  (d) Open another browser & navigate to actiTime URL & Login with newly created user & validate that login works for the newly created user.
+  (e) Logout from the second browser & Close the second browser
+  (f) Go to first browser & delete the user & validate user is deleted successful
+  (g) Logout from actiTime & validate logout is successful
+  (h) close browser.
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------
+  package Actitime;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Test {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.chrome.driver", "C:\\Drivers\\Poorni\\WEBDRIVERS\\chromedriver_win32\\chromedriver.exe");
+		//System.setProperty("webdriver.gecko.driver", "C:\\Drivers\\Poorni\\WEBDRIVERS\\firefox\\geckodriver.exe");
+		WebDriver driver=new ChromeDriver();
+		//WebDriver driver = new FirefoxDriver();
+		
+		
+		System.out.println(" launchBrowser(Open browser and navigate to actiTime URL)");
+		driver.manage().window().maximize();
+		System.out.println("navigateURL() ");
+		driver.navigate().to("http://localhost/login.do");
+		Thread.sleep(5000);
+		driver.findElement(By.id("username")).clear();
+		driver.findElement(By.id("username")).sendKeys("admin");
+		driver.findElement(By.xpath("//input[@name='pwd']")).clear();
+		driver.findElement(By.xpath("//input[@name='pwd']")).sendKeys("manager");
+		driver.findElement(By.xpath("//div[text()='Login ']")).click();
+		Thread.sleep(2000);
+	     System.out.println(driver.getTitle());
+		
+		System.out.println("Login with valid credentials & handle the shortcur If exists");
+		if(driver.findElement(By.xpath("//*[@id=\"gettingStartedShortcutsMenuWrapper\"]/div[1]/div[1]/div[2]")).isDisplayed())
+		{
+			driver.findElement(By.xpath("//div[@id='gettingStartedShortcutsMenuCloseId']")).click();
+		}
+		 
+		System.out.println("Create New user & validate user created successful.");
+		 Thread.sleep(2000);
+		    driver.findElement(By.xpath("//div[text()='USERS']")).click();
+		    
+		   driver.findElement(By.xpath("//div[contains(text(),'Add User')]")).click();
+		   Thread.sleep(2000);
+		   driver.findElement(By.xpath("//input[@id='userDataLightBox_firstNameField']")).clear();
+			driver.findElement(By.xpath("//input[@id='userDataLightBox_firstNameField']")).sendKeys("Poornima");
+			 System.out.println(" succefully add firstname"); 
+			driver.findElement(By.xpath("//input[@id='userDataLightBox_lastNameField']")).clear();
+			driver.findElement(By.xpath("//input[@id='userDataLightBox_lastNameField']")).sendKeys("H");
+			 System.out.println(" succefully add lastname"); ; 
+			driver.findElement(By.xpath("//input[@name='email']")).clear();
+			driver.findElement(By.xpath("//input[@name='email']")).sendKeys("poorni234@gmail.com");
+			 System.out.println(" succefully add email"); 
+			driver.findElement(By.xpath("//input[@id='userDataLightBox_usernameField']")).clear();
+			driver.findElement(By.xpath("//input[@id='userDataLightBox_usernameField']")).sendKeys("abc123");
+			 System.out.println(" succefully add Username"); 
+			driver.findElement(By.xpath("//input[@id='userDataLightBox_passwordField']")).clear();
+			driver.findElement(By.xpath("//input[@id='userDataLightBox_passwordField']")).sendKeys("manager");
+			 System.out.println(" succefully add password");  
+			driver.findElement(By.xpath("//input[@id='userDataLightBox_passwordCopyField']")).clear();
+			driver.findElement(By.xpath("//input[@id='userDataLightBox_passwordCopyField']")).sendKeys("manager");
+		     System.out.println(" succefully re enter password"); 
+		     driver.findElement(By.xpath("//div[contains(@class,'greyButton withIcon commitBtn')]")).click();
+	         System.out.println(" succefully add user");
+	         String username ="//span[text()='H, Poornima']";
+	         if (driver.findElement(By.xpath(username)).isDisplayed())
+	         {
+	        	System.out.println("user is succefully added");
+	         }
+	         else {
+	        	 System.out.println("user is not succefully added");
+	         }
+	         System.out.println(" Open another browser & navigate to actiTime URL ");
+	         Thread.sleep(5000);
+	         driver.navigate().to("http://localhost/login.do");
+	         driver.findElement(By.id("logoutLink")).click();
+	         driver.findElement(By.id("username")).clear();
+	 		driver.findElement(By.id("username")).sendKeys("abc123");
+	 		driver.findElement(By.xpath("//input[@name='pwd']")).clear();
+	 		driver.findElement(By.xpath("//input[@name='pwd']")).sendKeys("manager");
+	 		driver.findElement(By.xpath("//div[text()='Login ']")).click();
+	 		System.out.println ("& Login with newly created user & validate that login works for the newly created user."); 
+	 		
+	 		//) Logout from the second browser & Close the second browser
+	 		Thread.sleep(2000);
+	 		driver.findElement(By.xpath("//span[contains(text(),'Start exploring actiTIME')]")).click();
+	 		driver.findElement(By.xpath("//span[contains(text(),'Start exploring actiTIME')]")).click();
+	 		Thread.sleep(2000);
+	 		driver.findElement(By.linkText("Logout")).click();
+	 		Thread.sleep(2000);
+	 		System.out.println ("Go to first browser & delete the user & validate user is deleted successful");
+	 		Thread.sleep(2000);
+	 		driver.findElement(By.id("username")).clear();
+			driver.findElement(By.id("username")).sendKeys("admin");
+			driver.findElement(By.xpath("//input[@name='pwd']")).clear();
+			driver.findElement(By.xpath("//input[@name='pwd']")).sendKeys("manager");
+			driver.findElement(By.xpath("//div[text()='Login ']")).click();
+			Thread.sleep(2000);
+			driver.findElement(By.xpath("//div[text()='USERS']")).click();
+			Thread.sleep(2000);
+			String username1 ="//span[text()='H, Poornima']";
+	         driver.findElement(By.xpath(username1)).click();
+	         driver.findElement(By.xpath("//*[@id='userDataLightBox_deleteBtn']")).click();
+	         Thread.sleep(2000);
+				driver.switchTo().alert().accept();
+				System.out.println("handeled alert"); 
+				Thread.sleep(2000);
+	         
+	         if (driver.findElement(By.xpath(username)).isDisplayed())
+	         {
+	        	 System.out.println("unsuccefully to delete user"); 
+
+	        	 
+	         }
+	         else {
+	        	 System.out.println(" succefully  delete user"); 
+	         }
+	         // Logout from actiTime & validate logout is successful
+	        Thread.sleep(6000);
+		 	driver.findElement(By.linkText("Logout")).click();
+
+			if(driver.findElement(By.xpath("//td[@class='pagetitle']")).getText().equals("Enter Time-Track"))
+			{
+				System.out.println("Login to actiTime is successful");
+			}else {
+				System.out.println("Failed to login to actiTime");
+				return;
+			}
+	         
+	         // close browser.
+	        driver.close();
+	 		
+	 		
+	}
+	
+	
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+  
+
+2. Automate the following test case:
+   (a) Open browser and navigate to https://www.amazon.in/ URL
+   (b) search for 'Shoes for kids" and click on search button
+   (c) Validate search result page opens.
+   (d) click on the any search item & validate it opens in the new page.
+   (e) Switch to new page & read the product name & price.
+   (f) Select the quantity as 4 & click on "Add to Cart" button
+   (g) Validate that the item is added to the cart and it shows total price. Validate that the total proce is correct.
+   (h) click on cart button and validate product name, price, subtotal and quality with previous data. Both should match
+   (i) delete the item from the cart & validate that it is removed from the cart.
+   (j) close browser
+   ------------------------------------------------------------------------------------------------------------------------------------------------------------
+   package Actitime;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import org.openqa.selenium.support.ui.Select;
+
+public class Amazon {
+
+	public static void main(String[] args) {
+		ChromeDriver driver = null;
+		
+		try {
+			
+			System.setProperty("webdriver.chrome.driver", "C:\\Drivers\\Poorni\\WEBDRIVERS\\chromedriver_win32\\chromedriver.exe");
+			
+			 driver=new ChromeDriver(); 
+			 driver.navigate().to("https://www.amazon.co.in/");
+			 driver.manage().window().maximize();
+			 driver.findElement(By.id("twotabsearchtextbox")).sendKeys("shoes for kids");
+			 driver.findElement(By.id("nav-search-submit-button")).click();
+			 if(driver.findElement(By.xpath("//span[text()='Shoes']")).isDisplayed())
+			 {
+				System.out.println("result page opens") ;
+			 }
+			 else
+			 {
+				 System.out.println("result page not opens") ; 
+			 }
+  String shose_xpath= ("//img[contains(@src,'https://m.media-amazon.com/images/I/714rcwRW7NL._AC_SX200_SY161_QL70_.jpg')]");
+ driver.findElement(By.xpath(shose_xpath)).click();
+ Thread.sleep(2000);
+ if(driver.findElement(By.id("title")).isDisplayed())
+ {
+	System.out.println(" Successfully it opens in the new page") ;
+ }
+ else
+ {
+	 System.out.println(" fail to  opens in the new page") ; 
+ }
+//Switch to new page & read the product name & price. 
+System.out.println(driver.findElement(By.tagName("h1")).getText());
+System.out.println(driver.findElement(By.id("priceblock_ourprice")).getText());
+//Select the quantity as 4 & click on "Add to Cart" button
+Select drp=new Select(driver.findElement(By.name("dropdown_selected_size_name")));
+drp.selectByIndex(1);
+System.out.println("selected the size");
+Thread.sleep(5000);
+ Select drp1=new Select(driver.findElement(By.name("quantity")));
+drp1.selectByIndex(1);
+
+Thread.sleep(5000);
+driver.findElement(By.xpath("//input[@id='add-to-cart-button']")).click();
+driver.navigate().back();
+Select drp2=new Select(driver.findElement(By.name("quantity")));
+drp2.selectByIndex(1);
+Thread.sleep(5000);
+driver.findElement(By.xpath("//input[@id='add-to-cart-button']")).click();
+//Validate that the item is added to the cart and it shows total price.
+//Validate that the total proce is correct.
+if(driver.findElement(By.xpath("//h1[contains(.,'Added to Cart')]")).isDisplayed())
+{
+	
+	System.out.println("Successfully added");
+}
+ String Price=driver.findElement(By.xpath("//span[contains(text(),'₹ 7,596.00')]")).getText();
+int a=1899;
+if(Price=="7596.00")
+
+		//.equals(a*4))
+{
+	System.out.println("price is matching");
+}
+// delete the item from the cart & validate that it is removed from the cart.
+
+			// driver.close();
+			
+			
+		}catch(Exception e)
+		{
+			System.out.println(e);
+		}
+		finally {
+			driver = null;
+			
+		}
+		
+	}
+
+	
+	}
+		
+		
+		
+		
+
+
+   
+   
+   --------------------------------------------------------------------------------------------------------------------------------------------------
+   
+3. Automate the following test case:
+Pre-Requisite: manually login to actiTime->Go to tasks->add Tasks->import taks form CSV->click on Sample CSV file link & download-> Copy to some standard folder.
+
+
+   (a) Open browser and navigate to actiTime URL
+   (b) Login with valid credentials & handle the shortcur If exists
+   (c) click on tasks menu & click on Add New tasks
+   (d) Click on import taks form CSV link
+   (e) Verify import task page opens.
+   (f) Click on the 'Drag & drop csv file here OR click to open
+   (g) Import the Sample.csv (use autoIT OR Robot class) file which was downloaded as part of pre-requisite mentioned above.
+   (h) Validate that the file was imported successful
+   (i) Click on Complete Import button & validate "You have successfully imported:" message
+   (j) close the import tasks window
+   (k) Click on each tasks-> click on ACTIONS->click on Delete button-> Click On delete permanently button. Like that delete all the tasks.
+   (l) logout from actiTime & close the browser

@@ -1,0 +1,110 @@
+package Actitime;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class Day1actitimemytry {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "C:\\Drivers\\Poorni\\WEBDRIVERS\\chromedriver_win32\\chromedriver.exe");
+		//System.setProperty("webdriver.gecko.driver", "C:\\Drivers\\Poorni\\WEBDRIVERS\\firefox\\geckodriver.exe");
+		WebDriver driver=new ChromeDriver();
+		//WebDriver driver = new FirefoxDriver();
+		System.out.println(" launchBrowser()");
+		driver.manage().window().maximize();
+		System.out.println("navigateURL() ");
+		driver.navigate().to("http://localhost/login.do");
+		Thread.sleep(5000);
+		driver.findElement(By.id("username")).clear();
+		driver.findElement(By.id("username")).sendKeys("admin");
+		driver.findElement(By.xpath("//input[@name='pwd']")).clear();
+		driver.findElement(By.xpath("//input[@name='pwd']")).sendKeys("manager");
+		driver.findElement(By.xpath("//div[text()='Login ']")).click();
+	     System.out.println(driver.getTitle());
+	   
+	    if(driver.findElement(By.xpath("//img[contains(@src, '/default-logo.png')]")).isDisplayed())
+	     {
+	    	System.out.println("Actitime is succefully lunched"); 
+	     }
+	     else
+	     {
+	    	 System.out.println("Actitime is not succefully lunched");
+	    	 return;
+	     }
+	    Thread.sleep(2000);
+	    driver.findElement(By.xpath("//div[text()='USERS']")).click();
+	    
+	   driver.findElement(By.xpath("//div[contains(text(),'Add User')]")).click();
+	   Thread.sleep(5000);
+	    
+	 if(driver.findElement(By.xpath("//span[@id='userDataLightBox_titlePlaceholder']")).isDisplayed())
+			 {
+		 System.out.println("add user is succefully displayed");
+			 }
+	 else
+	 {
+		 System.out.println("add user is not succefully displayed"); 
+		 return;
+	 }
+	    driver.findElement(By.xpath("//input[@id='userDataLightBox_firstNameField']")).clear();
+		driver.findElement(By.xpath("//input[@id='userDataLightBox_firstNameField']")).sendKeys("Amith");
+		 System.out.println(" succefully add firstname"); 
+		driver.findElement(By.xpath("//input[@id='userDataLightBox_lastNameField']")).clear();
+		driver.findElement(By.xpath("//input[@id='userDataLightBox_lastNameField']")).sendKeys("H");
+		 System.out.println(" succefully add lastname"); ; 
+		driver.findElement(By.xpath("//input[@name='email']")).clear();
+		driver.findElement(By.xpath("//input[@name='email']")).sendKeys("Amith234@gmail.com");
+		 System.out.println(" succefully add email"); 
+		driver.findElement(By.xpath("//input[@id='userDataLightBox_usernameField']")).clear();
+		driver.findElement(By.xpath("//input[@id='userDataLightBox_usernameField']")).sendKeys("Amith145u309");
+		 System.out.println(" succefully add Username"); 
+		driver.findElement(By.xpath("//input[@id='userDataLightBox_passwordField']")).clear();
+		driver.findElement(By.xpath("//input[@id='userDataLightBox_passwordField']")).sendKeys("manager");
+		 System.out.println(" succefully add password");  
+		driver.findElement(By.xpath("//input[@id='userDataLightBox_passwordCopyField']")).clear();
+		driver.findElement(By.xpath("//input[@id='userDataLightBox_passwordCopyField']")).sendKeys("manager");
+	 	System.out.println(" succefully re enter password"); 
+        
+	 	// driver.findElement(By.id(" //table[@id='ext-comp-1079']")).click();
+	 	
+         driver.findElement(By.xpath("//div[contains(@class,'greyButton withIcon commitBtn')]")).click();
+         System.out.println(" succefully add user");
+         String username ="//span[text()='H, Amith']";
+         if (driver.findElement(By.xpath(username)).isDisplayed())
+         {
+        	System.out.println("user is succefully added");
+         }
+         else {
+        	 System.out.println("user is not succefully added");
+         }
+         
+        
+         Thread.sleep(2000);
+        driver.findElement(By.xpath(username)).click();
+        Thread.sleep(2000);
+         System.out.println(" succefully click");
+         Thread.sleep(5000);
+          driver.findElement(By.xpath("//*[@id='userDataLightBox_deleteBtn']")).click();
+
+			Thread.sleep(2000);
+			driver.switchTo().alert().accept();
+			System.out.println("handeled alert"); 
+			Thread.sleep(2000);
+         
+         if (driver.findElement(By.xpath(username)).isDisplayed())
+         {
+        	 System.out.println("unsuccefully to delete user"); 
+
+        	 
+         }
+         else {
+        	 System.out.println(" succefully  delete user"); 
+         }
+	}
+	
+
+}
