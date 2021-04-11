@@ -1,0 +1,53 @@
+package org.openqa.selenium;
+
+
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+
+
+public class Firefoxdriver {
+
+	public static void main(String[] args) throws InterruptedException {
+
+		System.out.println("s") ;
+		
+		System.setProperty("webdriver.gecko.driver", "C:\\Drivers\\Poorni\\WEBDRIVERS\\firefox\\geckodriver.exe");
+		
+		WebDriver driver=new FirefoxDriver(); 
+		
+        driver.navigate().to("https://opensource-demo.orangehrmlive.com/");  
+        
+        System.out.println(driver.getTitle()) ;
+        
+        driver.findElement(By.id("txtUsername")).clear();
+        driver.findElement(By.id("txtUsername")).sendKeys("Admin");
+        driver.findElement(By.id("txtPassword")).clear();
+        driver.findElement(By.id("txtPassword")).sendKeys("admin123");
+        driver.findElement(By.id("btnLogin")).click();
+        System.out.println(driver.getTitle()) ;
+        System.out.println("mike") ;
+        if (driver.findElement(By.xpath("//*[@id=\"content\"]/div/div[1]/h1")).getText().equalsIgnoreCase("Dashboard"))
+        {
+        	System.out.println("successfully login");
+        }
+        
+		 else  
+		{
+			System.out.println("Failed to login ");
+			return;
+		}  
+        
+        driver.manage().window().maximize();  
+
+         // Click on the Search button  
+      //  driver.findElement(By.linkText("Core Java")).click();     
+        
+		System.out.println(driver.getTitle());
+		
+		driver.quit();
+
+   
+
+	}
+
+}

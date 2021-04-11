@@ -1,0 +1,63 @@
+package org.openqa.selenium;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+//import org.openqa.selenium.ie.InternetExplorerDriver;
+//import org.openqa.selenium.remote.CapabilityType;
+//import org.openqa.selenium.remote.DesiredCapabilities;
+
+public class Alertpractice {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "C:\\Drivers\\Poorni\\WEBDRIVERS\\chromedriver_win32\\chromedriver.exe");
+		//System.setProperty("webdriver.gecko.driver", "C:\\Drivers\\Poorni\\WEBDRIVERS\\firefox\\geckodriver.exe");
+		//System.setProperty("webdriver.ie.driver", "C:\\Drivers\\Poorni\\WEBDRIVERS\\IEDriverServer\\IEDriverServer.exe");
+		
+		//DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
+		 
+		 // Settings to Accept the SSL Certificate in the Capability object
+		 //capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+		 
+		// InternetExplorerDriver driver = new InternetExplorerDriver(capabilities); 
+		
+		//WebDriver driver=new FirefoxDriver(); 
+		WebDriver driver =new ChromeDriver();
+		//WebDriver driver=new InternetExplorerDriver(); 
+		
+		driver.navigate().to("https://demoqa.com/alerts");
+		driver.manage().window().maximize();
+		Thread.sleep(2000);
+		driver.findElement(By.id("alertButton")).click();
+		Alert Aler = driver.switchTo().alert();
+		System.out.println(Aler.getText());
+		Aler.accept();
+		
+		System.out.println("***************Alert takes 5 second*****************");
+		driver.findElement(By.id("timerAlertButton")).click();
+		Thread.sleep(6000);
+		Alert Aler1 = driver.switchTo().alert();
+		System.out.println(Aler1.getText());
+		Aler.accept();
+		
+		System.out.println("***************Alert gives option ok or cancel*****************");
+		driver.findElement(By.id("confirmButton")).click();
+		Alert Aler2=driver.switchTo().alert();
+		System.out.println(Aler2.getText());
+		Aler2.dismiss();
+		
+		System.out.println("***************we can send text to alert*****************");
+		driver.findElement(By.id("promtButton")).click();
+		Alert Aler3=driver.switchTo().alert();
+		Aler3.sendKeys("Poornima Harsha");
+		System.out.println(Aler3.getText());
+		Aler3.accept();
+		//System.out.println(driver.findElement(By.xpath("/html/body")).getText());
+		//System.out.println(ch.findElement(By.xpath("/html/body")).getText());
+		driver.close();
+		
+		
+		
+
+	}
+
+}
